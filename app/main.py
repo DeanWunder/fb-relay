@@ -14,6 +14,7 @@ def get_bot_response(message):
 
 
 def verify_webhook(req):
+    print('verifying...')
     if req.args.get("hub.verify_token") == VERIFY_TOKEN:
         return req.args.get("hub.challenge")
     else:
@@ -37,7 +38,9 @@ def is_user_message(message):
 def listen():
     """This is the main function flask uses to 
     listen at the `/webhook` endpoint"""
+    print('made to webhook route')
     if request.method == 'GET':
+        print('is get request')
         return verify_webhook(request)
 
     if request.method == 'POST':
